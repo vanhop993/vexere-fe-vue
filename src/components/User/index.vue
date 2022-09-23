@@ -24,7 +24,7 @@
         >Profile</router-link
       >
       <button class="dropdown-item" type="button" @click="handleLogin">
-        Login
+        Logout
       </button>
     </div>
   </div>
@@ -45,6 +45,7 @@ export default {
     handleLogin() {
       this.$store.dispatch(A_SIGN_OUT);
       this.$store.dispatch(A_REMOVE_PROFILE);
+      this.$router.push("/")
     },
   },
   mounted() {

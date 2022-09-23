@@ -9,7 +9,6 @@ const state = {
   loading: false,
   err: null,
   token: null,
-  admin: false,
 };
 const mutations = {
   [types.M_SIGNIN_REQUEST]: (state) => {
@@ -33,10 +32,7 @@ const mutations = {
     state.loading = false;
     state.err = null;
     state.token = null;
-  },
-  [types.M_SET_ADMIN]: (state, payload) => {
-    state.admin = payload;
-  },
+  }
 };
 const actions = {
   [types.A_SAVE_LOCALSTORAGE]:({dispatch},payload) => {
@@ -143,16 +139,6 @@ const actions = {
   },
   [types.A_GET_TOKEN]: ({commit}) => {
     commit(types.M_SIGNIN_SUCCESS, localStorage.getItem("token"))
-  },
-  [types.A_GET_ADMIN]: ({commit}) => {
-    api
-      .post("/admin")
-      .then(() => {
-        commit(types.M_SET_ADMIN, true)
-      })
-      .catch(() => {
-        commit(types.M_SET_ADMIN, false)
-      });
   }
 };
 const getters = {
@@ -164,9 +150,6 @@ const getters = {
   },
   getToken: (state) => {
     return state.token
-  },
-  getAdmin: state => {
-    return state.admin
   }
 };
 

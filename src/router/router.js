@@ -152,6 +152,11 @@ const routes = [
         },
       ],
     },
+    {
+      path: "/:pathMatch(.*)*",
+      name: "Page-not-found",
+      component: () => import("../views/PageNotFound"),
+    }
   ];
   
   
