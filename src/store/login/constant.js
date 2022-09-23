@@ -10,3 +10,4 @@ export const A_TRY_SIGNIN = "a_try_signin"
 export const A_SIGN_OUT = "a_sign_out";
 export const A_SET_TIMEOUT_LOGOUT = "a_set_timeout_logout";
 export const A_SAVE_LOCALSTORAGE = "a_save_localstorage";
+export const A_GET_TOKEN = "a_get_token";

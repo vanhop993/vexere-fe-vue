@@ -9,6 +9,7 @@ const state = {
   loading: false,
   err: null,
   token: null,
+  admin: false,
 };
 const mutations = {
   [types.M_SIGNIN_REQUEST]: (state) => {
@@ -137,6 +138,9 @@ const actions = {
     setHeaders(null);
     commit(types.M_SIGNIN_CLEAR);
   },
+  [types.A_GET_TOKEN]: ({commit}) => {
+    commit(types.M_SIGNIN_SUCCESS, localStorage.getItem("token"))
+  }
 };
 const getters = {
   loadingAuth: (state) => {
@@ -145,6 +149,9 @@ const getters = {
   errAuth: (state) => {
     return state.err;
   },
+  getToken: (state) => {
+    return state.token
+  }
 };
 
 export default {
