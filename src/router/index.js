@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from "vue-router";
 import routes from "./router";
 import store from "../store";
 import * as types from "../store/login/constant";
-import api from "../api";
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
@@ -11,6 +10,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next)=> {
   store.dispatch(types.A_GET_TOKEN);
+  store.dispatch(types.A_GET_ADMIN);
   switch(to.meta.guard) {
     case "isHastoken":
       if(store.getters.getToken) {
@@ -18,14 +18,9 @@ router.beforeEach((to, from, next)=> {
       }
       break;
     case "admin" : 
-        api
-          .post("/admin")
-          .then(() => {
-            next();
-          })
-          .catch(() => {
-            next("/");
-          });
+      if(!store.getters.getAdmin) {
+        next(from.fullPath);
+      }
       break;
   }
   next()
